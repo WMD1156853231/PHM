@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+	<!-- 第一步：引入echarts的js文件 -->
+	<script src="../js/echarts.min.js"></script>
+	<script src="../js/jquery-3.1.1.min.js.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/server.js"></script>
+</head>
+
+<body style="margin:0px;">
+	<!--第二步：为echarts创建一个容器  -->
+	<div id="main" style="width:100%;"></div>
+	<!--第三步：编写echarts图形代码  -->
+	<script type="text/javascript" charset="utf-8">
+		var myChart = echarts.init(document.getElementById("main"));
+		var number;
+		number = 1000;
+		//type 根据请求获得实际的值
+		var type = 0;
+		var url = "api/index/device/count/" + type + "?token=4484300f8d41603bcd400458448e5c5aa848bdf7"
+		var paramMap = {
+
+		}
+		getJson(url, paramMap, function(data) {
+			console.log(data.total);
+			console.log(data.runningCount);
+			console.log(data.waitCount);
+			console.log(data.stopCount);
+			console.log(data.abnormalCount);
+
+			var option = {
+
+				title: {
+					text: data.total, //圆圈中的主标题
+					x: 'center',
+					y: '45%',
+					subtext: '设备数量', //副标题
+					sublink: 'https://www.uc123.com',
+					textStyle: {
+						fontSize: 50,
+						color: 'red',
+						align: 'left',
+					},
+					subtextStyle: {
+						fontSize: 28,
+					},
+					link: 'http://www.baidu.com', //主标题超链接
+					target: 'blank', //超链接打开方式
+				},
+
+				legend: {
+					orient: 'horizontal',
+					bottom: 20,
+					itemGap: 70,
+					itemWidth: 30,
+					itemHeight: 30,
+					textStyle: {
+						fontSize: 28
+					},
+					icon: "circle",
+					data: ['运行  ' + data.runningCount + '', '待机  ' + data.waitCount + '', '断开  ' + data.stopCount + '', '异常  ' + data.abnormalCount + '']
+				},
+
+				series: {
+					startAngle: 115,
+					type: 'pie',
+					radius: ['50%', '70%'],
+					label: {
+						show: false,
+					},
+					data: [{
+							value: data.waitCount,
+							name: '待机  ' + data.waitCount + '',
+							itemStyle: {
+								color: new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
+										offset: 0,
+										color: '#67E3EF'
+									},
+									{
+										offset: 1,
+										color: '#E2E2E2',
+									},
+								])
+							}
+						},
+
+						{
+							value: data.runningCount,
+							name: '运行  ' + data.runningCount + '',
+							itemStyle: {
+								color: new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
+										offset: 0,
+										color: '#EDEDED'
+									},
+									{
+										offset: 1,
+										color: '#027BFF',
+									},
+								])
+							}
+						},
+
+						{
+							value: data.stopCount,
+							name: '断开  ' + data.stopCount + '',
+							itemStyle: {
+								color: new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
+										offset: 0,
+										color: '#EDEDED'
+									},
+									{
+										offset: 1,
+										color: '#B46FD7',
+									},
+								])
+							}
+						},
+
+						{
+							value: data.abnormalCount,
+							name: '异常  ' + data.abnormalCount + '',
+							itemStyle: {
+								color: new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
+										offset: 0,
+										color: '#FF5F5F'
+									},
+									{
+										offset: 1,
+										color: '#EDEDED',
+									},
+								])
+							}
+						}
+					]
+				}
+
+			};
+
+			myChart.setOption(option);
+		});
+
+
+		window.onload = function() {
+			var mainDiv = document.getElementById("main");
+			var screenHeight = window.innerHeight;
+			mainDiv.style.height = screenHeight + "px";
+			myChart.resize();
+		}
+		window.onresize = function() {
+			var mainDiv = document.getElementById("main");
+			var screenHeight = window.innerHeight;
+			mainDiv.style.height = screenHeight + "px";
+			myChart.resize();
+		}
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html style="height:100%;width:100%;">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bar</title>
+  <!-- 第一步：引入echarts的js文件 -->
+  <script src="../js/echarts.min.js"></script>
+  <script src="../js/jquery-3.1.1.min.js.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/server.js"></script>
+</head>
+
+<body style="margin:0px;height:100%;width:100%;">
+  <!--第二步：为echarts创建一个容器  -->
+  <div id="main" style="width:100%;height:100%"></div>
+  <!--第三步：编写echarts图形代码  -->
+  <script type="text/javascript" charset="utf-8">
+    //参数设置
+    var point = 62.5; //获得的分数，限定：(0,totalPoint)
+    var totalPoint = 100; //总分 假设100
+    //显示图标
+    var myChart = echarts.init(document.getElementById("main")); //选定容器
+    var app = {};
+    var dataDisposeTop = [{
+      value: 78 * point / totalPoint,
+      name: point,
+      cursor: 'default',
+      zlevel: 2,
+      label: {
+        show: true,
+        position: 'center',
+        formatter: [
+          '{a|' + point + '}',
+          '{b|得分}'
+        ].join('\n'),
+        rich: {
+          a: {
+            fontSize: 45,
+            color: 'black',
+            fontWeight: 'bolder',
+          },
+          b: {
+            color: '#eaae4f',
+            fontSize: 25,
+            height: 80,
+          },
+        }
+      },
+      itemStyle: {
+        normal: {
+          color: '#40b66b',
+          borderWidth: 5, //描边线宽
+          borderColor: '#40b66b', //图形的描边颜色
+        },
+        emphasis: {
+          color: '#40b66b',
+          borderColor: '#40b66b',
+          borderWidth: 5,
+        },
+      }
+    }, { //不可修改
+      value: '22',
+      name: '隐藏的部分',
+      itemStyle: {
+        label: {
+          show: false,
+        },
+        labelLine: {
+          show: false,
+        },
+        color: 'rgba(0, 0, 0, 0)',
+        borderColor: 'rgba(0, 0, 0, 0)',
+        borderWidth: 0,
+      }
+    }];
+
+    //78 * (1 - point / totalPoint)
+    var dataDisposeDown = [{
+        value: 78,
+        name: '底色',
+        cursor: 'default',
+        itemStyle: {
+          normal: {
+            color: '#d9f0e1',
+            borderWidth: 5, //描边线宽
+            borderColor: '#d9f0e1', //图形的描边颜色
+          },
+          zlevel: -1,
+          legendHoverLink: false,
+          emphasis: {
+            color: '#d9f0e1',
+            borderColor: '#d9f0e1',
+            borderWidth: 5,
+          }
+        }
+      },
+      { //不可修改
+        value: '22',
+        name: '隐藏的部分',
+        itemStyle: {
+          label: {
+            show: false,
+          },
+          labelLine: {
+            show: false,
+          },
+          color: 'rgba(0, 0, 0, 0)',
+          borderColor: 'rgba(0, 0, 0, 0)',
+          borderWidth: 0,
+        }
+      }
+    ];
+    app.title = '环形图';
+    option = {
+      // backgroundColor: '#04243E',
+      title: {
+        text: '体检信息',
+      },
+      series: [{
+        name: '体检信息-底',
+        type: 'pie',
+        radius: ['69.5%', '70%'], //饼图的内外半径
+        center: ['50%', '50%'], //圆心坐标
+        avoidLabelOverlap: false, //是否启用防止标签重叠策略  默认true
+        startAngle: -129.2, //起始角度，支持范围[0, 360]。   默认90
+        legendHoverLink: false, //是否启用图例 hover 时的联动高亮   默认true
+        hoverAnimation: false, //是否开启 hover 在扇区上的放大动画效果  默认true
+        clockwise: true, //饼图的扇区是否是顺时针排布   默认true
+        label: {
+          show: false,
+        },
+        emphasis: {
+          color: '#d9f0e1',
+          borderColor: '#d9f0e1',
+          borderWidth: 5,
+        },
+        data: dataDisposeDown,
+      }, {
+        name: '体检信息-上',
+        type: 'pie',
+        radius: ['69.5%', '70%'], //饼图的内外半径
+        center: ['50%', '50%'], //圆心坐标
+        avoidLabelOverlap: false, //是否启用防止标签重叠策略  默认true
+        startAngle: -129.2, //起始角度，支持范围[0, 360]。   默认90
+        legendHoverLink: false, //是否启用图例 hover 时的联动高亮   默认true
+        hoverAnimation: false, //是否开启 hover 在扇区上的放大动画效果  默认true
+        clockwise: true, //饼图的扇区是否是顺时针排布   默认true
+        label: {
+          show: false,
+        },
+        emphasis: {
+          color: '#d9f0e1',
+          borderColor: '#d9f0e1',
+          borderWidth: 5,
+        },
+        data: dataDisposeTop,
+      }]
+    };
+
+    if (option && typeof option === "object") {
+      myChart.setOption(option, true);
+    }
+  </script>
+</body>
+
+</html>

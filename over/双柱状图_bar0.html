@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html style="height:100%;width:100%;">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bar</title>
+  <script src="../js/echarts.min.js"></script>
+</head>
+
+<body style="margin:0px;height:100%;width:100%;">
+  <div id="main" style="width:100%;height:100%"></div>
+  <script type="text/javascript" charset="utf-8">
+    var myChart = echarts.init(document.getElementById("chartOne")); //选定容器
+    var app = {};
+    option = {
+      title: {
+        text: '图标标题',
+        //文本设置
+        textStyle: {
+          fontSize: 25,
+        },
+      },
+      xAxis: {
+        type: 'category', //坐标轴类型，可选
+        data: ['心情指数', 'PHQ-9', 'PHQ-9'],
+        axisLine: { //控制轴线是否显示
+          show: false,
+        },
+        axisTick: { //控制刻度是否显示
+          show: false,
+        },
+        axisLabel: { //控制刻度标签是否显示
+          show: true,
+
+        }
+      },
+      yAxis: {
+        type: 'value',
+        splitLine: { //控制网格线是否显示
+          show: true,
+          lineStyle:{
+            color:'#f2f4f5',
+          }
+        },
+        axisLine: { //控制轴线是否显示
+          show: false,
+        },
+        axisTick: { //控制刻度是否显示
+          show: false,
+        },
+        axisLabel: {//控制刻度标签是否显示
+          show: true,
+          fontWeight: 'normal',
+        }
+      },
+      series: [{
+        name: '柱形图',
+        type: 'bar',
+        data: [2000, 2000, 2000],
+        barWidth: '30%', //矩形宽度
+        barGap:'20%',
+        itemStyle: {
+          color: new echarts.graphic.LinearGradient( //渐变色设置
+            0, 0, 0, 1,
+            [{
+                offset: 0,
+                color: '#1fc3e3'
+              },
+              {
+                offset: 0.5,
+                color: '#20cdd1'
+              },
+              {
+                offset: 1,
+                color: '#15d1ba'
+              }
+            ]
+          ),
+        },
+        /*显示柱子数据*/
+        label: {
+          show: false,
+        },
+      }, {
+        name: '柱形图',
+        type: 'bar',
+        data: [1250, 1250, 1250],
+        barWidth: '30%', //矩形宽度
+        barGap:'20%',
+        itemStyle: {
+          color: new echarts.graphic.LinearGradient( //渐变色设置
+            0, 0, 0, 1,
+            [{
+                offset: 0,
+                color: '#9be585'
+              },
+              {
+                offset: 0.5,
+                color: '#67ca76'
+              },
+              {
+                offset: 1,
+                color: '#2fad66'
+              }
+            ]
+          ),
+        },
+      }]
+    };
+
+    if (option && typeof option === "object") {
+      myChart.setOption(option, true);
+    }
+  </script>
+</body>
+
+</html>

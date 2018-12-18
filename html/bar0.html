@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html style="height:100%;width:100%;">
+  <head>
+    <meta charset="utf-8">
+    <title>Bar</title>
+    <!-- 第一步：引入echarts的js文件 -->
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/jquery-3.1.1.min.js.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/server.js"></script>
+  </head>
+  <body style="margin:0px;height:100%;width:100%;">
+    <!--第二步：为echarts创建一个容器  -->
+    <div id="main" style="width:100%;height:100%"></div>
+    <!--第三步：编写echarts图形代码  -->
+    <script type="text/javascript" charset="utf-8">
+    var myChart = echarts.init(document.getElementById("main"));//选定容器
+    var app = {};
+    option = null;
+
+
+
+
+
+
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+    </script>
+  </body>
+</html>

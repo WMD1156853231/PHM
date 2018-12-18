@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html style="height:100%;width:100%;">
+
+<head>
+  <meta charset="utf-8">
+  <title>体检信息pie</title>
+  <script src="../js/echarts.min.js"></script>
+</head>
+
+<body style="margin:0px;height:100%;width:100%;">
+  <div id="main" style="width:100%;height:100%"></div>
+  <script type="text/javascript" charset="utf-8">
+    //参数设置
+    var point = 62.2; //获得的分数，限定：(0,totalPoint)
+    var totalPoint = 100; //总分 假设100
+    var angleOpen = 79.2; //开口角度：
+    var angleHide = 1.5; //两段之间的间隔
+    var setBorderWidth = 4; //图表宽度
+    //算法设定：
+    var anglePoint = (360 - angleOpen - angleHide) * point / totalPoint;
+    var angleTotalPoint = (360 - angleOpen - angleHide) * (1 - point / totalPoint);
+    //显示图表
+    var myChart = echarts.init(document.getElementById("main")); //选定容器
+    var app = {};
+
+    //78 * (1 - point / totalPoint)
+    var dataDispose = [{
+        value: anglePoint,
+        name: point,
+        cursor: 'default',
+        zlevel: 2,
+        label: {
+          show: true,
+          position: 'center',
+          formatter: [
+            '{a|' + point + '}',
+            '{b|得分}'
+          ].join('\n'),
+          rich: {
+            a: {
+              fontSize: 40, //设置分数显示的字号
+              color: 'black', //设置分数显示的颜色
+              fontWeight: 'normal', //设置分数显示的样式 'normal' 'bold' 'bolder' 'lighter'
+            },
+            b: {
+              color: '#eaae4f',
+              fontSize: 22, //设置文字的字号
+              height: 40, //设置文字的高度
+            },
+          }
+        },
+        itemStyle: {
+          normal: {
+            color: '#40b66b',
+            borderWidth: setBorderWidth, //描边线宽
+            borderColor: '#40b66b', //图形的描边颜色
+          },
+          emphasis: {
+            color: '#40b66b',
+            borderColor: '#40b66b',
+            borderWidth: setBorderWidth,
+          },
+        }
+      }, { //不可修改
+        value: angleHide,
+        cursor: 'default',
+        itemStyle: {
+          label: {
+            show: false,
+          },
+          labelLine: {
+            show: false,
+          },
+          color: 'rgba(0, 0, 0, 0)',
+          borderColor: 'rgba(0, 0, 0, 0)',
+          borderWidth: 0,
+        }
+      }, {
+        value: angleTotalPoint,
+        name: '底色',
+        cursor: 'default',
+        itemStyle: {
+          normal: {
+            color: '#d9f0e1',
+            borderWidth: setBorderWidth, //描边线宽
+            borderColor: '#d9f0e1', //图形的描边颜色
+          },
+          zlevel: -1,
+          legendHoverLink: false,
+          emphasis: {
+            color: '#d9f0e1',
+            borderColor: '#d9f0e1',
+            borderWidth: setBorderWidth,
+          }
+        }
+      },
+      { //不可修改
+        value: angleOpen,
+        cursor: 'default',
+        itemStyle: {
+          label: {
+            show: false,
+          },
+          labelLine: {
+            show: false,
+          },
+          color: 'rgba(0, 0, 0, 0)',
+          borderColor: 'rgba(0, 0, 0, 0)',
+          borderWidth: 0,
+        }
+      }
+    ];
+    app.title = '环形图';
+    option = {
+      title: {
+        text: '体检信息',
+        textStyle: {
+          fontSize: 12, //图表标题字号
+        }
+      },
+      series: [{
+        name: '体检信息-底',
+        type: 'pie',
+        radius: ['69.5%', '70%'], //饼图的内外半径
+        center: ['50%', '50%'], //圆心坐标
+        avoidLabelOverlap: false, //是否启用防止标签重叠策略  默认true
+        startAngle: 270 - angleOpen / 2, //起始角度，支持范围[0, 360]。   默认90
+        legendHoverLink: false, //是否启用图例 hover 时的联动高亮   默认true
+        hoverAnimation: false, //是否开启 hover 在扇区上的放大动画效果  默认true
+        clockwise: true, //饼图的扇区是否是顺时针排布   默认true
+        label: {
+          show: false,
+        },
+        emphasis: {
+          color: '#d9f0e1',
+          borderColor: '#d9f0e1',
+          borderWidth: 5,
+        },
+        data: dataDispose,
+      }]
+    };
+
+    if (option && typeof option === "object") {
+      myChart.setOption(option, true);
+    }
+  </script>
+</body>
+
+</html>

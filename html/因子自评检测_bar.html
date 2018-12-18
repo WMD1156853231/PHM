@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html style="height:100%;width:100%;">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bar</title>
+  <script src="../js/echarts.min.js"></script>
+</head>
+
+<body style="margin:0px;height:100%;width:100%;">
+  <div id="main" style="width:100%;height:100%"></div>
+  <script type="text/javascript" charset="utf-8">
+    var myChart = echarts.init(document.getElementById("main")); //选定容器
+    var app = {};
+    option = {
+      title: {
+        text: '因子自评历史检测对比',
+        //文本设置
+        textStyle: {
+          fontSize: 25,
+        },
+      },
+      xAxis: {
+        //坐标轴类型，可选
+        type: 'category',
+        data: ['01/12', '06/03', '11/23', '12/02', '18/01/12', '01/12', '01/12', '01/12', '01/12', '01/12'],
+        //控制轴线是否显示
+        axisLine: {
+          show: false,
+        },
+        //控制刻度是否显示
+        axisTick: {
+          show: false,
+        },
+        //控制刻度标签是否显示
+        axisLabel: {
+          show: true,
+          rotate: -90,
+        }
+      },
+      yAxis: {
+        type: 'value',
+        //控制网格线是否显示
+        splitLine: {
+          show: false,
+        },
+        //控制轴线是否显示
+        axisLine: {
+          show: false,
+        },
+        //控制刻度是否显示
+        axisTick: {
+          show: false,
+        },
+        //控制刻度标签是否显示
+        axisLabel: {
+          show: true,
+          fontWeight: 'bold',
+        }
+      },
+      series: [{
+        name: '柱形图',
+        type: 'bar',
+        data: [200, 450, 120, 280, 370, 180, 120, 210, 300, 390],
+        barWidth: '50%', //矩形宽度
+        itemStyle: {
+          barBorderRadius: 5, //矩形圆角
+          color: new echarts.graphic.LinearGradient( //渐变色设置
+            0, 0, 0, 1,
+            [{
+                offset: 0,
+                color: '#2cc9e9'
+              },
+              {
+                offset: 0.5,
+                color: '#22ccd5'
+              },
+              {
+                offset: 1,
+                color: '#14d1b8'
+              }
+            ]
+          ),
+          emphasis: {
+            color: new echarts.graphic.LinearGradient( //渐变色设置
+              0, 0, 0, 1,
+              [{
+                  offset: 0,
+                  color: '#14d1b8' //3`
+                },
+                {
+                  offset: 0.7,
+                  color: '#2cc9e9' //1
+                },
+                {
+                  offset: 1,
+                  color: '#22ccd5' //2
+                }
+              ]
+            )
+          }
+        },
+        /*显示柱子数据*/
+        label: {
+          show: true,
+          //数据在柱子头部加载
+          position: 'top',
+          textStyle: {
+            color: '#FF5F5F',
+            fontSize: 14,
+          }
+        },
+      }, {
+        data: [200, 450, 120, 280, 370, 180, 120, 210, 300, 390],
+        type: 'line',
+        itemStyle: {
+          color: '#FFC568',
+          borderColor: '#FFFFFF',
+          borderWidth: 5,
+          symbol: 'circle',
+          showSymbol: true,
+        },
+      }]
+    };
+
+    if (option && typeof option === "object") {
+      myChart.setOption(option, true);
+    }
+  </script>
+</body>
+
+</html>

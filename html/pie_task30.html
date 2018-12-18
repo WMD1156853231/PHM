@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html style="height:100%;width:100%;">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bar</title>
+  <!-- 第一步：引入echarts的js文件 -->
+  <script src="../js/echarts.min.js"></script>
+  <script src="../js/jquery-3.1.1.min.js.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/server.js"></script>
+</head>
+
+<body style="margin:0px;height:100%;width:100%;">
+  <!--第二步：为echarts创建一个容器  -->
+  <div id="main" style="width:100%;height:100%"></div>
+  <!--第三步：编写echarts图形代码  -->
+  <script type="text/javascript" charset="utf-8">
+    var myChart = echarts.init(document.getElementById("main")); //选定容器
+    var app = {};
+    var datapei = [{
+        value:'10',
+        name: '工程建设',
+        itemStyle: {
+          normal: {
+            borderWidth: 5,
+            shadowBlur: 20,
+            borderColor: '#00ffff',
+            shadowColor: '#00ffff'
+          }
+        }
+      },
+      {
+        value: 3,
+        name: '',
+        itemStyle: {
+          normal: {
+            label: {
+              show: false,
+            },
+            labelLine: {
+              show: false,
+            },
+            color: 'rgba(0, 0, 0, 0)',
+            borderColor: 'rgba(0, 0, 0, 0)',
+            borderWidth: 0,
+          }
+        }
+      }];
+    app.title = '环形图';
+    option = {
+      series: [{
+        name: '访问来源',
+        type: 'pie',
+        radius: ['64%', '70%'], //饼图的内外半径
+        center: ['50%', '50%'], //圆心坐标
+        avoidLabelOverlap: false, //是否启用防止标签重叠策略  默认true
+        startAngle: 230, //起始角度，支持范围[0, 360]。   默认90
+        legendHoverLink: false, //是否启用图例 hover 时的联动高亮   默认true
+        hoverAnimation: false, //是否开启 hover 在扇区上的放大动画效果  默认true
+        clockwise: true, //饼图的扇区是否是顺时针排布   默认true
+        label: {
+          show: false,
+          // position: 'center',
+          show: false,
+          position: 'outside',
+          color: '#ddd',
+          // formatter: function(params) {
+          //   var percent = 0;
+          //   var total = 0;
+          //   for (var i = 0; i < scaleData.length; i++) {
+          //     total += scaleData[i].value;
+          //   }
+          //   percent = ((params.value / total) * 100).toFixed(0);
+          //   if (params.name !== '') {
+          //     return params.name + '\n{white|' + '占比' + percent + '%}';
+          //   } else {
+          //     return '';
+          //   }
+          // },
+          rich: {
+            white: {
+              color: '#ddd',
+              align: 'center',
+              padding: [3, 0],
+            },
+          },
+        },
+        labelLine: {
+          show: true,
+          smooth: 0.5,
+        },
+        itemStyle: {
+
+        },
+        data: datapei,
+      }]
+    };
+
+    if (option && typeof option === "object") {
+      myChart.setOption(option, true);
+    }
+  </script>
+</body>
+
+</html>

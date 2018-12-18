@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+
+    </ul>
+    <script src="../js/jquery-3.1.1.min.js.js"></script>
+    <script>
+
+        $.ajax({
+            url:'http://118.178.182.6/phm/api/member/sheet/option/list?token=b5cf498b70a176efeacbc5b07d88e0da76a7f4cb',
+            type:'post',
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            data:JSON.stringify({
+                patientItemId:3448,
+                sheetId:9
+            }),
+            success:function(data){
+                console.log(data)
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>温度图表</title>
+	<script src="../js/echarts.min.js"></script>
+	<script src="../js/jquery-3.1.1.min.js.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/server.js"></script>
+</head>
+
+<body style="margin:0px;">
+	<div id="main" style="width:100%;"></div>
+	<script>
+		var myChart = echarts.init(document.getElementById("main"));
+		var url = "api/data/device/data/list";
+		var paramMap = {
+			"currentDate": "2018-10-10",
+			"deviceId": 3
+		}
+		postJson(url, paramMap, function(data) {
+			var xData = [];
+			var yData = [];
+			var list = data.dataList;
+			for (var i = 0; i < list.length; i++) {
+				xData.push(list[i].time);
+				yData.push(parseInt(list[i].value));
+
+			}
+			console.log(xData);
+			console.log(yData);
+			var option = {
+				tooltip: {
+					trigger: 'item',
+					show: true,
+					position: function(point, params, dom, rect, size) {
+						return [point[0], '30%'];
+					},
+					formatter: '{c}℃',
+					backgroundColor: '#FFFFFF',
+					textStyle: {
+						color: '#FC574E'
+					},
+					extraCssText: 'box-shadow: 0 0 3px rgba(0,0,0,0.3);',
+				},
+				grid: {
+					show: true,
+					borderColor: '#F5F5F5',
+				},
+
+				xAxis: {
+					type: 'category',
+					//data: ["6:00","9:00","12:00","15:00","18:00","21:00","0:00"],
+					data: xData,
+					axisLine: {
+						show: false,
+					},
+					axisTick: {
+						show: false,
+					},
+					axisLabel: {
+						margin: 25,
+						color: '#ccc',
+					},
+					splitLine: {
+						show: true,
+						interval: 0,
+						lineStyle: {
+							color: '#F5F5F5',
+						},
+					},
+					axisPointer: {
+						show: true,
+						type: 'shadow',
+						label: {
+							show: false,
+						},
+						shadowStyle: {
+							color: '#479CF9',
+							opacity: 0.05,
+						}
+					}
+				},
+				yAxis: {
+					type: 'value',
+					min: -20,
+					max: 50,
+					interval: 10,
+					axisLine: {
+						show: false,
+					},
+					axisTick: {
+						show: false,
+					},
+					axisLabel: {
+						margin: 20,
+						color: '#ccc',
+					},
+					splitLine: {
+						show: false,
+					}
+				},
+
+				series: {
+					name: '温度',
+					type: 'line',
+					xAxisIndex: 0,
+					yAxisIndex: 0,
+					//data: [3, 10, 25.54, 18, 19, 8,19],
+					data: yData,
+					smooth: 0.4,//曲线是否开启平滑显示和平滑的参数
+					symbol: 'circle',//标记类型，在数据节点的数据标记以什么形式展示rect 矩形
+					symbolSize: 15,
+					showSymbol: false,//是否显示Symbol，为false时只有在鼠标悬浮的时候
+					itemStyle: {
+						color: '#479CF9',
+						borderColor: '#FFFFFF',
+						borderWidth: 5,
+					},
+					lineStyle: {
+						color: '#479CF9',
+						width: 6,
+						shadowBlur: 10,
+						shadowColor: '#E0EEEE',
+						shadowOffsetY: 15,
+					},
+					markLine: {//标线
+						data: [{
+							yAxis: 18,
+						}],
+						symbol: 'circle',
+						symbolSize: 0,
+						label: {
+							show: false,
+						},
+						lineStyle: {
+							type: 'dashed',
+							color: '#F9EF63'
+						}
+					}
+				},
+			};
+
+			myChart.setOption(option);
+		})
+		window.onload = function() {
+			var mainDiv = document.getElementById("main");
+			var screenHeight = window.innerHeight;
+			mainDiv.style.height = screenHeight + "px";
+			myChart.resize();
+		}
+		window.onresize = function() {
+			var mainDiv = document.getElementById("main");
+			var screenHeight = window.innerHeight;
+			mainDiv.style.height = screenHeight + "px";
+			myChart.resize();
+		}
+	</script>
+
+</body>
+
+</html>

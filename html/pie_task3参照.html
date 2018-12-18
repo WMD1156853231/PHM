@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html style="height:100%;width:100%;">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bar</title>
+  <!-- 第一步：引入echarts的js文件 -->
+  <script src="../js/echarts.min.js"></script>
+  <script src="../js/jquery-3.1.1.min.js.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/server.js"></script>
+</head>
+
+<body style="margin:0px;height:100%;width:100%;">
+  <!--第二步：为echarts创建一个容器  -->
+  <div id="main" style="width:100%;height:100%"></div>
+  <!--第三步：编写echarts图形代码  -->
+  <script type="text/javascript" charset="utf-8">
+    var myChart = echarts.init(document.getElementById("main")); //选定容器
+    var app = {};
+    var scaleData = [{
+        'name': '工程建设',
+        'value': 10
+      },
+      {
+        'name': '产权交易',
+        'value': 19
+      },
+      {
+        'name': '土地交易',
+        'value': 10
+      },
+      {
+        'name': '其他交易',
+        'value': 10
+      },
+      {
+        'name': '土地交易',
+        'value': 10
+      },
+      {
+        'name': '其他交易',
+        'value': 10
+      },
+
+    ];
+    var rich = { //富文本编辑器设置
+      white: {
+        color: '#ddd', //灰色 文字的颜色
+        align: 'center', //文字水平对齐方式，默认自动。
+        padding: [3, 0], //文字块的内边距。padding: [3, 4]：表示 padding: [3, 4, 3, 4]。
+      }
+    };
+    var placeHolderStyle = {
+      normal: {
+        label: {
+          show: false
+        },
+        labelLine: {
+          show: false
+        },
+        color: 'rgba(0, 0, 0, 0)',
+        borderColor: 'rgba(0, 0, 0, 0)',
+        borderWidth: 0
+      }
+    };
+    var data = [];
+    var color = ['#00ffff', '#00cfff', '#006ced', '#ffe000', '#ffa800', '#ff5b00', '#ff3000']
+    for (var i = 0; i < scaleData.length; i++) { //循环6次
+      data.push({
+        value: scaleData[i].value,
+        name: scaleData[i].name,
+        itemStyle: {
+          normal: {
+            borderWidth: 5,
+            shadowBlur: 20,
+            borderColor: color[i],
+            shadowColor: color[i]
+          }
+        }
+      }, {
+        value: 2,
+        name: '',
+        itemStyle: placeHolderStyle
+      }); //每次循环都往里面追加以上内容
+    }
+    /*
+  追加内容：
+  [{
+      value:'10',
+      name: '工程建设',
+      itemStyle: {
+        normal: {
+          borderWidth: 5,
+          shadowBlur: 20,
+          borderColor: '#00ffff',
+          shadowColor: '#00ffff'
+        }
+      }
+    },
+    {
+      value: 3,
+      name: '',
+      itemStyle: {
+        normal: {
+          label: {
+            show: false,
+          },
+          labelLine: {
+            show: false,
+          },
+          color: 'rgba(0, 0, 0, 0)',
+          borderColor: 'rgba(0, 0, 0, 0)',
+          borderWidth: 0,
+        }
+      }
+    }]
+   */
+
+
+
+    var seriesObj = [{
+      name: '',
+      type: 'pie',
+      clockWise: false,
+      radius: [195, 200],
+      hoverAnimation: false,
+      itemStyle: {
+        normal: {
+          label: {
+            show: true,
+            position: 'outside',
+            color: '#ddd',
+            formatter: function(params) {
+              var percent = 0;
+              var total = 0;
+              for (var i = 0; i < scaleData.length; i++) {
+                total += scaleData[i].value;
+              }
+              percent = ((params.value / total) * 100).toFixed(0);
+              if (params.name !== '') {
+                return params.name + '\n{white|' + '占比' + percent + '%}';
+              } else {
+                return '';
+              }
+            },
+            rich: rich
+          },
+          labelLine: {
+            length: 30,
+            length2: 100,
+            show: true,
+            color: '#00ffff'
+          }
+        }
+      },
+      data: data
+    }];
+    option = {
+      backgroundColor: '#04243E',
+      tooltip: {
+        show: false
+      },
+      legend: {
+        show: false
+      },
+      toolbox: {
+        show: false
+      },
+      series: seriesObj
+    }
+
+    if (option && typeof option === "object") {
+      myChart.setOption(option, true);
+    }
+  </script>
+</body>
+
+</html>

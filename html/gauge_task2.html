@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html style="height:100%;width:100%;">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bar</title>
+  <!-- 第一步：引入echarts的js文件 -->
+  <script src="../js/echarts.min.js"></script>
+  <script src="../js/jquery-3.1.1.min.js.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/server.js"></script>
+</head>
+
+<body style="margin:0px;height:100%;width:100%;">
+  <!--第二步：为echarts创建一个容器  -->
+  <div id="main" style="width:100%;height:100%"></div>
+  <!--第三步：编写echarts图形代码  -->
+  <script type="text/javascript" charset="utf-8">
+    var myChart = echarts.init(document.getElementById("main")); //选定容器
+    var app = {};
+    option = {
+      title: {
+        text: '体检信息',
+        //文本设置
+        textStyle: {
+          fontSize: 25,
+        },
+      },
+      series: {
+        name: '体检信息',
+        type: 'gauge',
+        radius: '80%', //所占容器的比例
+        startAngle: 228, //起始角度
+        endAngle: -48, //结束角度
+        center: ['50%', '50%'],
+        splitNumber: 0, //刻度数量
+        splitLine: { //刻度盘切线
+          show: false,
+        },
+        axisLabel: { //刻度值
+          show: false
+        },
+        axisTick: { //小刻度
+          show: false
+        },
+        pointer: { //指针
+          show: false
+        },
+
+        axisLine: {
+          show: true,
+          lineStyle: {
+            width: 5,
+            color: [
+              [
+                0.98, new echarts.graphic.LinearGradient(
+                  0, 0, 1, 0, [{
+                      offset: 0,
+                      color: '#ae3df6'
+                    },
+                    {
+                      offset: 1,
+                      color: '#53bef9'
+                    }
+                  ]
+                )
+              ],
+              [
+                1, '#222e7d'
+              ]
+            ],
+            opacity:1,
+          }
+        },
+      },
+    };
+
+    if (option && typeof option === "object") {
+      myChart.setOption(option, true);
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>体检信息pie</title>
+  <script src="../js/echarts.min.js"></script>
+  <link href="../CSS/page.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="mainClass">
+    <div class="contentZeroClass"></div>
+    <!-- 综合情况的表格 -->
+    <div id="contentOne" class="contentOneClass">
+      <div class="captionClass">
+        <p>综合情况</p>
+      </div>
+      <div>
+        <table id="ArbetTableOne" class="arbetTableClass">
+          <thead>
+            <tr>
+              <th style="min-width: 62px;" data-field="testProject" data-valign="middle" data-align="center">项目检测</th>
+              <th data-field="testDate" data-valign="middle" data-align="center">测试日期</th>
+              <th data-field="testResult" data-valign="middle" data-align="center">结果</th>
+              <th data-field="testTips" data-valign="middle" data-align="center">提示</th>
+              <th data-field="testWarning" data-valign="middle" data-align="center">预警</th>
+            </tr>
+            <!-- 假数据 -->
+            <tr>
+              <td>PHQ-9</td>
+              <td>2018/10/10</td>
+              <td>10</td>
+              <td>中度抑郁</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>PHQ-9</td>
+              <td>2018/10/10</td>
+              <td>12</td>
+              <td>中度抑郁</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>PHQ-9</td>
+              <td>2018/10/10</td>
+              <td>10</td>
+              <td>中度抑郁</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>PHQ-9</td>
+              <td>2018/10/10</td>
+              <td>20</td>
+              <td>中度抑郁</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>PHQ-9</td>
+              <td>2018/09/10</td>
+              <td>有自杀意向</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <td data-field="testProject" data-valign="middle" data-align="center">综合</td>
+              <td data-field="testDate" data-valign="middle" data-align="center" colspan="4" data-search-formatter>
+                <p>有轻度的躯体化症状。可能有轻微的叙述不清的身体不适症状，有时精神不够愉快，偶尔出现自我中心、敌意、向他人诉苦，希望得到别人的同情。
+                </p>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <!-- 自身个体前后纵向报告分析 -->
+    <div class="cutoffLine"></div>
+    <div id="contentTwo">
+      <div class="captionClass">
+        <p>自身个体前后纵向报告分析</p>
+      </div>
+      <div>
+        <table id="ArbetTableTwo" class="arbetTableClass">
+          <thead>
+            <tr>
+              <th data-field="testProject" data-valign="middle" data-align="center">批次</th>
+              <th data-field="testDate" data-valign="middle" data-align="center">sk00001</th>
+              <th data-field="testResult" data-valign="middle" data-align="center">sk00002</th>
+            </tr>
+            <!-- 假数据 -->
+            <tr>
+              <td>日期</td>
+              <td>2018/10/10</td>
+              <td>2017/12/12</td>
+            </tr>
+            <tr>
+              <td>PHQ-9</td>
+              <td>23</td>
+              <td>32</td>
+            </tr>
+            <tr>
+              <td>PHQ-7</td>
+              <td>45</td>
+              <td>32</td>
+            </tr>
+            <tr>
+              <td>PHQ-15</td>
+              <td>23</td>
+              <td>21</td>
+            </tr>
+            <tr>
+              <td>PSQI</td>
+              <td>45</td>
+              <td>40%</td>
+            </tr>
+            <tr>
+              <td>自杀意念问卷</td>
+              <td>自杀倾向</td>
+              <td>无</td>
+            </tr>
+            <tr>
+              <td>预警状态</td>
+              <td>三级预警</td>
+              <td>二级预警</td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <!-- 双柱状图图表 -->
+    <div>
+      <div class="captionChartClass">
+        <p>图表标题</p>
+      </div>
+      <div id="chartOne" class="chartClass"></div>
+      <div class="testLableClass">
+        <p>疑病量表：有轻度的躯体化症状。可能有轻微的叙述不清的身体不适症状，有时精神不够愉快，偶尔出现自我中心、敌意、向他人诉苦，希望得到别人的同情。</p>
+      </div>
+    </div>
+    <div class="cutoffLine"></div>
+    <!-- 焦虑自评测试 -->
+    <div>
+      <div class="captionChartTwoClass">
+        <p>焦虑自评测试</p>
+      </div>
+      <div id="chartTwo" class="chartClassTwo"></div>
+      <div class="buttomClass">
+        <p>总分：66.2</p>
+      </div>
+      <div>
+        <h4>体检信息</h4>
+        <p>疑病量表：有轻度的躯体化症状。可能有轻微的叙述不清的身体不适症状，有时精神不够愉快，偶尔出现自我中心、敌意、向他人诉苦，希望得到别人的同情。</p>
+        <h4>体检建议</h4>
+        <p>疑病量表：有轻度的躯体化症状。可能有轻微的叙述不清的身体不适症状，有时精神不够愉快，偶尔出现自我中心、敌意、向他人诉苦，希望得到别人的同情。</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+<!-- 图表的js文件在这里 -->
+<script type="text/javascript" charset="utf-8">
+  var myChart = echarts.init(document.getElementById("chartOne")); //选定容器
+  var app = {};
+  option = {
+    xAxis: {
+      type: 'category', //坐标轴类型，可选
+      data: ['心情指数', 'PHQ-9', 'PHQ-9'],
+      axisLine: { //控制轴线是否显示
+        show: false,
+      },
+      axisTick: { //控制刻度是否显示
+        show: false,
+      },
+      axisLabel: { //控制刻度标签是否显示
+        show: true,
+
+      }
+    },
+    yAxis: {
+      type: 'value',
+      splitLine: { //控制网格线是否显示
+        show: true,
+        lineStyle: {
+          color: '#f2f4f5',
+        }
+      },
+      axisLine: { //控制轴线是否显示
+        show: false,
+      },
+      axisTick: { //控制刻度是否显示
+        show: false,
+      },
+      axisLabel: { //控制刻度标签是否显示
+        show: true,
+        fontWeight: 'normal',
+      }
+    },
+    series: [{
+      name: '柱形图',
+      type: 'bar',
+      data: [2000, 2000, 2000],
+      barWidth: '30%', //矩形宽度
+      barGap: '20%',
+      itemStyle: {
+        color: new echarts.graphic.LinearGradient( //渐变色设置
+          0, 0, 0, 1,
+          [{
+              offset: 0,
+              color: '#1fc3e3'
+            },
+            {
+              offset: 0.5,
+              color: '#20cdd1'
+            },
+            {
+              offset: 1,
+              color: '#15d1ba'
+            }
+          ]
+        ),
+      },
+      /*显示柱子数据*/
+      label: {
+        show: false,
+      },
+    }, {
+      name: '柱形图',
+      type: 'bar',
+      data: [1250, 1250, 1250],
+      barWidth: '30%', //矩形宽度
+      barGap: '20%',
+      itemStyle: {
+        color: new echarts.graphic.LinearGradient( //渐变色设置
+          0, 0, 0, 1,
+          [{
+              offset: 0,
+              color: '#9be585'
+            },
+            {
+              offset: 0.5,
+              color: '#67ca76'
+            },
+            {
+              offset: 1,
+              color: '#2fad66'
+            }
+          ]
+        ),
+      },
+    }]
+  };
+
+  if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+  }
+</script>
+<script type="text/javascript" charset="utf-8">
+  //参数设置
+  var point = 62.2; //获得的分数，限定：(0,totalPoint)
+  var totalPoint = 100; //总分 假设100
+  var angleOpen = 79.2; //开口角度：
+  var angleHide = 1.5; //两段之间的间隔
+  var setBorderWidth = 4; //图表宽度
+  //算法设定：
+  var anglePoint = (360 - angleOpen - angleHide) * point / totalPoint;
+  var angleTotalPoint = (360 - angleOpen - angleHide) * (1 - point / totalPoint);
+  //显示图表
+  var myChart = echarts.init(document.getElementById("chartTwo")); //选定容器
+  var app = {};
+
+  //78 * (1 - point / totalPoint)
+  var dataDispose = [{
+      value: anglePoint,
+      name: point,
+      cursor: 'default',
+      zlevel: 2,
+      label: {
+        show: true,
+        position: 'center',
+        formatter: [
+          '{a|' + point + '}',
+          '{b|得分}'
+        ].join('\n'),
+        rich: {
+          a: {
+            fontSize: 40, //设置分数显示的字号
+            color: 'black', //设置分数显示的颜色
+            fontWeight: 'normal', //设置分数显示的样式 'normal' 'bold' 'bolder' 'lighter'
+          },
+          b: {
+            color: '#eaae4f',
+            fontSize: 22, //设置文字的字号
+            height: 40, //设置文字的高度
+          },
+        }
+      },
+      itemStyle: {
+        normal: {
+          color: '#40b66b',
+          borderWidth: setBorderWidth, //描边线宽
+          borderColor: '#40b66b', //图形的描边颜色
+        },
+        emphasis: {
+          color: '#40b66b',
+          borderColor: '#40b66b',
+          borderWidth: setBorderWidth,
+        },
+      }
+    }, { //不可修改
+      value: angleHide,
+      cursor: 'default',
+      itemStyle: {
+        label: {
+          show: false,
+        },
+        labelLine: {
+          show: false,
+        },
+        color: 'rgba(0, 0, 0, 0)',
+        borderColor: 'rgba(0, 0, 0, 0)',
+        borderWidth: 0,
+      }
+    }, {
+      value: angleTotalPoint,
+      name: '底色',
+      cursor: 'default',
+      itemStyle: {
+        normal: {
+          color: '#d9f0e1',
+          borderWidth: setBorderWidth, //描边线宽
+          borderColor: '#d9f0e1', //图形的描边颜色
+        },
+        zlevel: -1,
+        legendHoverLink: false,
+        emphasis: {
+          color: '#d9f0e1',
+          borderColor: '#d9f0e1',
+          borderWidth: setBorderWidth,
+        }
+      }
+    },
+    { //不可修改
+      value: angleOpen,
+      cursor: 'default',
+      itemStyle: {
+        label: {
+          show: false,
+        },
+        labelLine: {
+          show: false,
+        },
+        color: 'rgba(0, 0, 0, 0)',
+        borderColor: 'rgba(0, 0, 0, 0)',
+        borderWidth: 0,
+      }
+    }
+  ];
+  app.title = '环形图';
+  option = {
+    title: {
+      text: '体检信息',
+      textStyle: {
+        fontSize: 13, //图表标题字号
+      }
+    },
+    series: [{
+      name: '体检信息-底',
+      type: 'pie',
+      radius: ['69.5%', '70%'], //饼图的内外半径
+      center: ['50%', '50%'], //圆心坐标
+      avoidLabelOverlap: false, //是否启用防止标签重叠策略  默认true
+      startAngle: 270 - angleOpen / 2, //起始角度，支持范围[0, 360]。   默认90
+      legendHoverLink: false, //是否启用图例 hover 时的联动高亮   默认true
+      hoverAnimation: false, //是否开启 hover 在扇区上的放大动画效果  默认true
+      clockwise: true, //饼图的扇区是否是顺时针排布   默认true
+      label: {
+        show: false,
+      },
+      emphasis: {
+        color: '#d9f0e1',
+        borderColor: '#d9f0e1',
+        borderWidth: 5,
+      },
+      data: dataDispose,
+    }]
+  };
+
+  if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+  }
+</script>
+
+</html>

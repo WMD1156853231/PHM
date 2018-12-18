@@ -1,0 +1,166 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  background-color: white;
+  font-family: PingFangSC-Medium,Tahoma, Microsoft YaHei, SimHei, Arial, Verdana, sans-serif, "新宋体" !important;
+  color: black;
+  font-size: 14px;
+}
+
+p {
+  /* margin: 0
+  padding: 0;
+  text-align: left; */
+  font-size: 14px;
+}
+
+.contentOneClass {
+  margin: 0;
+  padding: 0;
+  height: 400px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.captionClass {
+  height: 25px;
+  width: 72px;
+}
+
+.captionClass p {
+  color: rgba(60, 180, 175, 1);
+  font-size: 18px;
+  font-family: PingFangSC-Medium;
+  line-height: 25px;
+  margin-left: 15px;
+}
+
+
+
+div {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+div.mainClass {
+  height: 100%;
+}
+
+/* div切割线 */
+.cutoffLine {
+  border: none;
+  height: 10px;
+  background-color: #f5f5f5;
+  margin-top: 8px;
+}
+
+.captionChartClass p {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: -40px;
+}
+
+.captionChartTwoClass p {
+  color: green;
+  text-align: center;
+  font-size: 17px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.buttomClass {
+  height: 40px;
+  border: 1px solid gray;
+  width: 35%;
+  margin: 0 auto;
+  background-color: green;
+  border-radius: 25px;
+  margin-top: -55px;
+}
+
+.buttomClass p {
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  line-height: 35px;
+}
+
+h4 {
+  margin: 0;
+  padding: 0;
+  margin-left: 10px;
+  margin-bottom: 8px;
+}
+
+h4+p {
+  margin: 0 10px 8px 11px;
+  line-height: 17px;
+}
+
+.chartClass {
+  height: 180px;
+  margin: 0;
+  padding: 0;
+}
+
+.chartClassTwo {
+  height: 300px;
+  margin: 0;
+  padding: 0;
+}
+
+.testLableClass {
+  border: 1px solid gray;
+  margin: -25px 2% 0 2%;
+  width: 96%;
+  border-radius: 3px;
+}
+
+.testLableClass p {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.arbetTableClass {
+  margin: 0 1%;
+  padding: 0;
+  width: 98%;
+  height: auto;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  border-collapse: collapse;
+  -webkit-transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+}
+
+.arbetTableClass th {
+  font-size: 14px;
+  color: white;
+  background-color: #61c774;
+  line-height: 35px;
+  height: 35px;
+  width: auto;
+  border-left: 1px solid #e9e9e9;
+  font-weight: normal;
+}
+
+.arbetTableClass td {
+  text-align: center;
+  line-height: 35px;
+  height: auto;
+  color: black;
+  text-align: center;
+  border: 1px solid #e9e9e9;
+  border-right: 1px solid #e9e9e9;
+  background: white;
+}

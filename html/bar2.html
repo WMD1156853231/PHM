@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html style="height:100%;width:100%;">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bar:动态数据</title>
+  <!-- 第一步：引入echarts的js文件 -->
+  <script src="../js/echarts.min.js"></script>
+  <script src="../js/jquery-3.1.1.min.js.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/server.js"></script>
+</head>
+
+<body style="margin:0px;height:100%;width:100%;">
+  <!--第二步：为echarts创建一个容器  -->
+  <div id="main" style="width:100%;height:100%"></div>
+  <!--第三步：编写echarts图形代码  -->
+  <script type="text/javascript" charset="utf-8">
+    var myChart = echarts.init(document.getElementById("main")); //选定容器
+    var app = {};
+    option = null;
+
+    option = { //选项，标题
+      title: {
+        text: '李俊林的echarts图标',
+        subtext: '这是备注!!!!!'
+      },
+      tooltip: { //工具提示
+        trigger: 'axis', //触发
+        axisPointer: { //指针
+          type: 'cross', //类型
+          label: { //标签
+            backgroundColor: '#F3F945' //背景颜色
+          }
+        }
+      },
+      legend: {
+        data: ['最新成交价', '预购队列', '预购队列2'] //数据分类
+      },
+      toolbox: { //右上角的按钮，每一个对应的一个封装好的事件
+        show: true,
+        feature: {
+          dataView: {
+            readOnly: false
+          }, //数据视图
+          restore: {}, //还原按钮
+          saveAsImage: {} //保存
+        }
+      },
+      dataZoom: { //底下的拉条，定义显示数据的多少 资料室   数据区域缩放后的事件。
+        show: false, //设置是否显示
+        start: 0, //默认0，调整以后默认展示的数据就是这个值开始，缩放的开始位置的百分比，0 - 100
+        end: 100 //可以比start小，但是会有问题，图标的展示有问题 缩放的结束位置的百分比，0 - 100
+      },
+      xAxis: [ //X轴
+        {
+          type: 'category',
+          boundaryGap: true,
+          data: (function() {
+            var now = new Date();
+            var res = [];
+            var len = 10;
+            while (len--) {
+              res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+              now = new Date(now - 2000);
+            }
+            return res;
+          })()
+        },
+        {
+          type: 'category',
+          boundaryGap: true,
+          data: (function() {
+            var res = [];
+            var len = 10;
+            while (len--) {
+              res.push(10 - len - 1);
+            }
+            return res;
+          })()
+        }
+      ],
+      yAxis: [ //Y轴
+        {
+          type: 'value',
+          scale: true,
+          name: '价格',
+          max: 30,
+          min: 0,
+          boundaryGap: [0.2, 0.2]
+        },
+        {
+          type: 'value',
+          scale: true,
+          name: '预购量',
+          max: 1200,
+          min: 0,
+          boundaryGap: [0.2, 0.2]
+        }
+      ],
+      series: [{//这里选择图标类型
+          name: '预购队列',
+          type: 'bar',
+          xAxisIndex: 1,
+          yAxisIndex: 1,
+          data: (function() {
+            var res = [];
+            var len = 10;
+            while (len--) {
+              res.push(Math.round(Math.random() * 1000));
+            }
+            return res;
+          })()
+        },
+        {
+          name: '最新成交价',
+          type: 'line',
+          data: (function() {
+            var res = [];
+            var len = 0;
+            while (len < 10) {
+              res.push((Math.random() * 10 + 5).toFixed(1) - 0);
+              len++;
+            }
+            return res;
+          })()
+        }
+      ]
+    };
+
+    app.count = 11;
+    setInterval(function() {
+      axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+
+      var data0 = option.series[0].data;
+      var data1 = option.series[1].data;
+      data0.shift();
+      data0.push(Math.round(Math.random() * 1000));
+      data1.shift();
+      data1.push((Math.random() * 10 + 5).toFixed(1) - 0);
+
+      option.xAxis[0].data.shift();
+      option.xAxis[0].data.push(axisData);
+      option.xAxis[1].data.shift();
+      option.xAxis[1].data.push(app.count++);
+
+      myChart.setOption(option);
+    }, 2100);
+
+    if (option && typeof option === "object") {
+      myChart.setOption(option, true);
+    }
+  </script>
+</body>
+
+</html>
