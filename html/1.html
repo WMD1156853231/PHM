@@ -13,14 +13,27 @@
     <script src="../js/jquery-3.1.1.min.js.js"></script>
     <script>
 
+        // $.ajax({
+        //     url:'http://118.178.182.6/phm/api/member/sheet/option/list?token=b5cf498b70a176efeacbc5b07d88e0da76a7f4cb',
+        //     type:'post',
+        //     dataType:"json",
+        //     contentType: "application/json; charset=utf-8",
+        //     data:JSON.stringify({
+        //         patientItemId:3448,
+        //         sheetId:9
+        //     }),
+        //     success:function(data){
+        //         console.log(data)
+        //     }
+        // })
         $.ajax({
-            url:'http://118.178.182.6/phm/api/member/sheet/option/list?token=b5cf498b70a176efeacbc5b07d88e0da76a7f4cb',
+            url:'http://118.178.182.6/phm/api/member/login',
             type:'post',
             dataType:"json",
             contentType: "application/json; charset=utf-8",
             data:JSON.stringify({
-                patientItemId:3448,
-                sheetId:9
+                mobile:15867638324,
+                authCode:123456
             }),
             success:function(data){
                 console.log(data)
